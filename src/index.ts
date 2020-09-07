@@ -1,7 +1,7 @@
 import {Command, flags} from '@oclif/command'
 
 class Pushtag extends Command {
-  static description = 'describe the command here'
+  static description = 'Push git tag based on package.json version'
 
   static flags = {
     // add --version flag to show CLI version
