@@ -1,8 +1,11 @@
 import { Command, flags } from '@oclif/command'
 import * as execa from 'execa'
 import * as fs from 'fs'
+import { Package } from './interfaces'
 
-const defPackageLocation = './package.json'
+const DEFAULTS = {
+  PKG_LOCATION: './package.json',
+}
 
 class Pushtag extends Command {
   static description = 'Push git tag based on package.json version'
@@ -16,13 +19,18 @@ class Pushtag extends Command {
   static args = [{ name: 'file' }]
 
   private readPackage = async () => {
-    return await fs.promises.readFile(defPackageLocation)
+    const pkgString = await fs.promises.readFile(DEFAULTS.PKG_LOCATION, {
+      encoding: 'utf8',
+    })
+    const pkg: Package = JSON.parse(pkgString)
+    return pkg
   }
 
   async run() {
     const { args, flags } = this.parse(Pushtag)
 
-    const pkg = this.readPackage()
+    const pkg = await this.readPackage()
+    this.log(pkg.version)
 
     this.log('Done!!!')
   }
