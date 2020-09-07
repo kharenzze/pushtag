@@ -1,28 +1,30 @@
-import {Command, flags} from '@oclif/command'
+import { Command, flags } from '@oclif/command'
+import * as execa from 'execa'
+import * as fs from 'fs'
+
+const defPackageLocation = './package.json'
 
 class Pushtag extends Command {
   static description = 'Push git tag based on package.json version'
 
   static flags = {
     // add --version flag to show CLI version
-    version: flags.version({char: 'v'}),
-    help: flags.help({char: 'h'}),
-    // flag with a value (-n, --name=VALUE)
-    name: flags.string({char: 'n', description: 'name to print'}),
-    // flag with no value (-f, --force)
-    force: flags.boolean({char: 'f'}),
+    version: flags.version({ char: 'v' }),
+    help: flags.help({ char: 'h' }),
   }
 
-  static args = [{name: 'file'}]
+  static args = [{ name: 'file' }]
+
+  private readPackage = async () => {
+    return await fs.promises.readFile(defPackageLocation)
+  }
 
   async run() {
-    const {args, flags} = this.parse(Pushtag)
+    const { args, flags } = this.parse(Pushtag)
 
-    const name = flags.name || 'world'
-    this.log(`hello ${name} from ./src/index.ts`)
-    if (args.file && flags.force) {
-      this.log(`you input --force and --file: ${args.file}`)
-    }
+    const pkg = this.readPackage()
+
+    this.log('Done!!!')
   }
 }
 
