@@ -25,11 +25,18 @@ class Pushtag extends Command {
     return pkg
   }
 
+  private checkGitStatus = async () => {
+    const { stdout: status } = await execa.command('git status')
+    this.log(status)
+  }
+
   async run() {
     const { args, flags } = this.parse(Pushtag)
 
     const pkg = await this.readPackage()
     this.log(pkg.version)
+
+    await this.checkGitStatus()
 
     this.log('Done!!!')
   }
