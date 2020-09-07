@@ -1,0 +1,52 @@
+{
+  "name": "pushtag",
+  "description": "Push git tag based on package.json version",
+  "version": "0.0.0",
+  "author": "Paolo Raez @kharenzze",
+  "bin": {
+    "pushtag": "./bin/run"
+  },
+  "bugs": "https://github.com/kharenzze/pushtag/issues",
+  "dependencies": {
+    "@oclif/command": "^1",
+    "@oclif/config": "^1",
+    "@oclif/plugin-help": "^2",
+    "tslib": "^1"
+  },
+  "devDependencies": {
+    "@oclif/test": "^1",
+    "@oclif/tslint": "^3",
+    "@types/chai": "^4",
+    "@types/mocha": "^5",
+    "@types/node": "^10",
+    "chai": "^4",
+    "mocha": "^5",
+    "nyc": "^14",
+    "ts-node": "^8",
+    "tslint": "^5",
+    "typescript": "^3.3"
+  },
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "files": [
+    "/bin",
+    "/lib"
+  ],
+  "homepage": "https://github.com/kharenzze/pushtag",
+  "keywords": [
+    "oclif"
+  ],
+  "license": "gpl-3.0",
+  "main": "lib/index.js",
+  "oclif": {
+    "bin": "pushtag"
+  },
+  "repository": "kharenzze/pushtag",
+  "scripts": {
+    "posttest": "tslint -p test -t stylish",
+    "prepack": "rm -rf lib && tsc -b",
+    "test": "nyc --extension .ts mocha --forbid-only \"test/**/*.test.ts\""
+  },
+  "types": "lib/index.d.ts"
+}
