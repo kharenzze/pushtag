@@ -37,7 +37,7 @@
   "keywords": [
     "oclif"
   ],
-  "license": "gpl-3.0",
+  "license": "GPL-3.0",
   "main": "lib/index.js",
   "oclif": {
     "bin": "pushtag"
@@ -46,7 +46,8 @@
   "scripts": {
     "posttest": "tslint -p test -t stylish",
     "prepack": "rm -rf lib && tsc -b",
-    "test": "nyc --extension .ts mocha --forbid-only \"test/**/*.test.ts\""
+    "test": "nyc --extension .ts mocha --forbid-only \"test/**/*.test.ts\"",
+    "start": "./bin/run"
   },
   "types": "lib/index.d.ts"
 }
