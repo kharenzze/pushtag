@@ -1,7 +1,9 @@
 import { Command, flags } from '@oclif/command'
 import * as execa from 'execa'
 import * as fs from 'fs'
+import { clearScreenDown } from 'readline'
 import { Package } from './interfaces'
+
 const inquirer = require('inquirer')
 
 const DEFAULTS = {
@@ -15,9 +17,10 @@ class Pushtag extends Command {
   static flags = {
     version: flags.version({ char: 'v' }),
     help: flags.help({ char: 'h' }),
-    prefix: flags.help({
+    prefix: flags.string({
       char: 'p',
       description: 'Prefix that prepends the version number',
+      default: DEFAULTS.PREFIX,
     }),
   }
 
@@ -29,6 +32,13 @@ class Pushtag extends Command {
     })
     const pkg: Package = JSON.parse(pkgString)
     return pkg
+  }
+
+  private getTagName = async () => {
+    const { flags } = this.parse(Pushtag)
+    const { prefix } = flags
+    const pkg = await this.readPackage()
+    return prefix + pkg.version
   }
 
   private checkGitStatus: () => Promise<boolean> = async () => {
@@ -52,11 +62,9 @@ class Pushtag extends Command {
   }
 
   async run() {
-    const { args, flags } = this.parse(Pushtag)
-
-    const pkg = await this.readPackage()
-
     await this.checkGitStatus()
+    const tagName = await this.getTagName()
+    this.log(tagName)
 
     this.log('Done!!!')
   }
