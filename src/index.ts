@@ -2,6 +2,7 @@ import { Command, flags } from '@oclif/command'
 import * as execa from 'execa'
 import * as fs from 'fs'
 import { Package } from './interfaces'
+const inquirer = require('inquirer')
 
 const DEFAULTS = {
   PKG_LOCATION: './package.json',
@@ -28,10 +29,20 @@ class Pushtag extends Command {
   private checkGitStatus: () => Promise<boolean> = async () => {
     const { stdout: status } = await execa.command('git status')
     const clear = status.includes('nothing to commit')
-    if (clear) {
-      this.log('There are no pending changes')
-    } else {
+    if (!clear) {
       this.log('There are pending changes...')
+      const { proceed } = await inquirer.prompt([
+        {
+          name: 'proceed',
+          message: 'Do you want to continue?',
+          type: 'confirm',
+          default: false,
+        },
+      ])
+      if (!proceed) {
+        throw new Error('There are pending changes')
+      }
+      this.log(JSON.stringify(proceed))
     }
     return clear
   }
