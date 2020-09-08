@@ -40,7 +40,6 @@ class Pushtag extends Command {
     const { args, flags } = this.parse(Pushtag)
 
     const pkg = await this.readPackage()
-    this.log(pkg.version)
 
     await this.checkGitStatus()
 
