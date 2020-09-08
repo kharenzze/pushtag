@@ -72,6 +72,18 @@ class Pushtag extends Command {
     await this.checkGitStatus()
     const tagName = await this.getTagName()
     this.log(`You are going to apply and push this tag: ${tagName}`)
+    const { proceed } = await inquirer.prompt([
+      {
+        name: 'proceed',
+        message: 'Do you want to continue?',
+        type: 'confirm',
+        default: false,
+      },
+    ])
+    if (!proceed) {
+      this.log(`Aborting`)
+      return 0
+    }
     this.log('Done!!!')
   }
 }
