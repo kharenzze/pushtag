@@ -15,6 +15,10 @@ class Pushtag extends Command {
   static flags = {
     version: flags.version({ char: 'v' }),
     help: flags.help({ char: 'h' }),
+    prefix: flags.help({
+      char: 'p',
+      description: 'Prefix that prepends the version number',
+    }),
   }
 
   static args = [{ name: 'file' }]
