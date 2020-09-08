@@ -84,6 +84,8 @@ class Pushtag extends Command {
       this.log(`Aborting`)
       return 0
     }
+    await execa.command(`git tag ${tagName}`)
+    await execa.command(`git push ${origin} ${tagName}`)
     this.log('Done!!!')
   }
 }
