@@ -6,6 +6,7 @@ const inquirer = require('inquirer')
 
 const DEFAULTS = {
   PKG_LOCATION: './package.json',
+  PREFIX: 'v',
 }
 
 class Pushtag extends Command {
@@ -42,7 +43,6 @@ class Pushtag extends Command {
       if (!proceed) {
         throw new Error('There are pending changes')
       }
-      this.log(JSON.stringify(proceed))
     }
     return clear
   }
