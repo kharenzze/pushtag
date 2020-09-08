@@ -25,9 +25,15 @@ class Pushtag extends Command {
     return pkg
   }
 
-  private checkGitStatus = async () => {
+  private checkGitStatus: () => Promise<boolean> = async () => {
     const { stdout: status } = await execa.command('git status')
-    this.log(status)
+    const clear = status.includes('nothing to commit')
+    if (clear) {
+      this.log('There are no pending changes')
+    } else {
+      this.log('There are pending changes...')
+    }
+    return clear
   }
 
   async run() {
