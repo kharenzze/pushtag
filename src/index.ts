@@ -71,7 +71,7 @@ class Pushtag extends Command {
     const { origin } = flags
     await this.checkGitStatus()
     const tagName = await this.getTagName()
-    this.log(tagName)
+    this.log(`You are going to apply and push this tag: ${tagName}`)
     this.log('Done!!!')
   }
 }
