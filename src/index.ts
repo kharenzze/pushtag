@@ -29,14 +29,16 @@ class Pushtag extends Command {
     }),
   }
 
-  static args = [{ name: 'file' }]
-
   private readPackage = async () => {
-    const pkgString = await fs.promises.readFile(DEFAULTS.PKG_LOCATION, {
-      encoding: 'utf8',
-    })
-    const pkg: Package = JSON.parse(pkgString)
-    return pkg
+    try {
+      const pkgString = await fs.promises.readFile(DEFAULTS.PKG_LOCATION, {
+        encoding: 'utf8',
+      })
+      const pkg: Package = JSON.parse(pkgString)
+      return pkg
+    } catch (err) {
+      throw new Error('Could not read package.json')
+    }
   }
 
   private getTagName = async () => {
