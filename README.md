@@ -21,10 +21,10 @@ $ npm install -g pushtag
 $ pushtag COMMAND
 running command...
 $ pushtag (-v|--version|version)
-pushtag/0.1.0 win32-x64 node-v12.16.3
+pushtag/0.1.1 win32-x64 node-v12.16.3
 $ pushtag --help [COMMAND]
 USAGE
-  $ pushtag [FILE]
+  $ pushtag
 
 OPTIONS
   -h, --help           show CLI help
