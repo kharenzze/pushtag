@@ -11,7 +11,24 @@ specified on package.json.
 [![License](https://img.shields.io/npm/l/pushtag)](https://github.com/kharenzze/pushtag/blob/master/package.json)
 
 <!-- toc -->
+* [Usage](#usage)
+* [Commands](#commands)
+<!-- tocstop -->
 # Usage
 <!-- usage -->
+```sh-session
+$ npm install -g pushtag
+$ pushtag COMMAND
+running command...
+$ pushtag (-v|--version|version)
+pushtag/0.1.0 win32-x64 node-v12.16.3
+$ pushtag --help [COMMAND]
+USAGE
+  $ pushtag COMMAND
+...
+```
+<!-- usagestop -->
 # Commands
 <!-- commands -->
+
+<!-- commandsstop -->
