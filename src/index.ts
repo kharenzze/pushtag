@@ -77,7 +77,7 @@ class Pushtag extends Command {
         name: 'proceed',
         message: 'Do you want to continue?',
         type: 'confirm',
-        default: false,
+        default: true,
       },
     ])
     if (!proceed) {
