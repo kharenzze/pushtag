@@ -24,7 +24,13 @@ $ pushtag (-v|--version|version)
 pushtag/0.1.0 win32-x64 node-v12.16.3
 $ pushtag --help [COMMAND]
 USAGE
-  $ pushtag COMMAND
+  $ pushtag [FILE]
+
+OPTIONS
+  -h, --help           show CLI help
+  -o, --origin=origin  [default: origin] Git remote name
+  -p, --prefix=prefix  [default: v] Prefix that prepends the version number
+  -v, --version        show CLI version
 ...
 ```
 <!-- usagestop -->
