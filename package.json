@@ -1,7 +1,7 @@
 {
   "name": "pushtag",
   "description": "Push git tag based on package.json version",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "author": "Paolo Raez @kharenzze",
   "bin": {
     "pushtag": "./bin/run"
